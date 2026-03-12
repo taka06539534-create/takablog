@@ -1,0 +1,102 @@
+---
+title: "Mastering Tailwind CSS v4"
+date: "2026-03-08"
+description: "Learn how to leverage the full power of Tailwind CSS v4 with its new features and improved performance."
+tags: ["Tailwind CSS", "CSS", "Design"]
+coverImage: "/posts/tailwind-cover.jpg"
+---
+
+# Mastering Tailwind CSS v4
+
+Tailwind CSS v4 brings revolutionary changes to the world of utility-first CSS frameworks. Let's dive into what makes this version special.
+
+## The New Engine
+
+Tailwind CSS v4 introduces a completely rewritten engine that's faster and more efficient than ever before.
+
+### Key Improvements
+
+1. **Lightning Fast** - Up to 10x faster build times
+2. **Smaller Bundles** - More efficient tree-shaking
+3. **Native CSS Variables** - First-class support for CSS custom properties
+
+## Getting Started
+
+Installation is simpler than ever:
+
+```bash
+npm install tailwindcss @tailwindcss/postcss
+```
+
+Then update your `postcss.config.js`:
+
+```js
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+  },
+};
+```
+
+## New Features
+
+### Improved Color Palette
+
+The new color system is more intuitive and accessible:
+
+```html
+<div class="bg-primary text-primary-foreground">
+  Better color contrast
+</div>
+```
+
+### Enhanced Responsive Design
+
+Responsive utilities are now more powerful:
+
+```html
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  Responsive grid layout
+</div>
+```
+
+## Best Practices
+
+### Use Component Classes
+
+For repeated patterns, extract to components:
+
+```tsx
+// Instead of repeating utilities
+<Button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600" />
+
+// Create reusable components
+function Button({ children, className }) {
+  return (
+    <button className={cn("btn-primary", className)}>
+      {children}
+    </button>
+  );
+}
+```
+
+### Leverage CSS Variables
+
+CSS variables are now first-class citizens:
+
+```css
+@theme inline {
+  --color-brand: #3b82f6;
+  --color-brand-dark: #2563eb;
+}
+```
+
+## Conclusion
+
+Tailwind CSS v4 is a game-changer for rapid UI development. Start using it in your next project!
+
+---
+
+**Helpful Links:**
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Tailwind UI Components](https://ui.shadcn.com)

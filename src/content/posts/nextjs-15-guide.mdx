@@ -1,0 +1,85 @@
+---
+title: "Getting Started with Next.js 15"
+date: "2026-03-10"
+description: "A comprehensive guide to building modern web applications with Next.js 15 and the App Router."
+tags: ["Next.js", "React", "Web Development"]
+coverImage: "/posts/nextjs-cover.jpg"
+---
+
+# Getting Started with Next.js 15
+
+Next.js 15 brings exciting new features and improvements to the already powerful React framework. In this post, we'll explore what's new and how to get started building modern web applications.
+
+## What's New in Next.js 15?
+
+Next.js 15 introduces several key improvements:
+
+- **Turbopack by default** - Faster local development with the new Rust-based bundler
+- **Improved caching** - Better stability and control over data fetching
+- **React 19 support** - Full compatibility with the latest React features
+- **Enhanced error handling** - More informative error messages and debugging
+
+## Creating Your First Project
+
+Let's create a new Next.js 15 project:
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm run dev
+```
+
+That's it! You now have a fully functional Next.js application running.
+
+## Understanding the App Router
+
+The App Router is now the recommended way to build applications in Next.js. Here's a basic structure:
+
+```
+app/
+├── layout.tsx      # Root layout
+├── page.tsx        # Home page
+├── blog/
+│   └── page.tsx    # Blog listing
+└── about/
+    └── page.tsx    # About page
+```
+
+## Key Concepts
+
+### Server Components
+
+By default, all components in the App Router are Server Components. This means they render on the server, reducing the amount of JavaScript sent to the client.
+
+```tsx
+// This is a Server Component
+async function BlogPosts() {
+  const posts = await getPosts();
+  return <div>{posts.map(post => <Post key={post.id} {...post} />)}</div>;
+}
+```
+
+### Client Components
+
+When you need interactivity, use the `"use client"` directive:
+
+```tsx
+"use client";
+
+import { useState } from 'react';
+
+export function Counter() {
+  const [count, setCount] = useState(0);
+  return <button onClick={() => setCount(c => c + 1)}>{count}</button>;
+}
+```
+
+## Conclusion
+
+Next.js 15 makes building modern web applications easier and more efficient than ever. Start exploring today!
+
+---
+
+**Related Resources:**
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev)

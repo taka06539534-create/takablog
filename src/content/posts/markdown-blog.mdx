@@ -1,0 +1,108 @@
+---
+title: "Building a Personal Blog with Markdown"
+date: "2026-03-05"
+description: "A step-by-step guide to creating a blog that uses Markdown files for content management."
+tags: ["Markdown", "Blog", "Tutorial"]
+coverImage: "/posts/markblog-cover.jpg"
+---
+
+# Building a Personal Blog with Markdown
+
+Creating a personal blog doesn't have to be complicated. In this tutorial, we'll build a blog that uses Markdown files for content management.
+
+## Why Markdown?
+
+Markdown is perfect for blogging because:
+
+- **Simple to write** - Focus on content, not formatting
+- **Version control friendly** - Plain text works great with Git
+- **Portable** - Works with any static site generator
+- **Fast** - No database queries needed
+
+## Project Structure
+
+Here's how we organize our blog:
+
+```
+src/
+├── app/
+│   ├── blog/
+│   │   └── [slug]/
+│   │       └── page.tsx
+│   └── page.tsx
+├── content/
+│   └── posts/
+│       └── my-first-post.md
+└── lib/
+    └── posts.ts
+```
+
+## Reading Markdown Files
+
+We use `gray-matter` to parse frontmatter:
+
+```typescript
+import matter from 'gray-matter';
+import fs from 'fs';
+import path from 'path';
+
+const postsDirectory = path.join(process.cwd(), 'src/content/posts');
+
+export function getPostData(slug: string) {
+  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  return { data, content };
+}
+```
+
+## Frontmatter Format
+
+Each post starts with YAML frontmatter:
+
+```yaml
+---
+title: "My First Post"
+date: "2026-03-05"
+description: "A brief description"
+tags: ["Tutorial", "Beginner"]
+---
+```
+
+## Rendering Markdown
+
+To render Markdown with React components, we use `next-mdx-remote`:
+
+```tsx
+import { MDXRemote } from 'next-mdx-remote/react';
+
+function BlogPost({ content }) {
+  return (
+    <MDXRemote source={content} />
+  );
+}
+```
+
+## Adding Syntax Highlighting
+
+For code blocks, consider adding a syntax highlighter:
+
+```tsx
+import { createMDXComponents } from '@/lib/mdx-components';
+
+const components = createMDXComponents({
+  pre: ({ children }) => <pre className="syntax-highlighted">{children}</pre>,
+  code: ({ children }) => <code>{children}</code>,
+});
+```
+
+## Conclusion
+
+Building a Markdown-based blog is straightforward and gives you full control over your content. Start writing today!
+
+---
+
+**Further Reading:**
+- [Markdown Guide](https://www.markdownguide.org)
+- [gray-matter Documentation](https://github.com/jonschlinkert/gray-matter)
