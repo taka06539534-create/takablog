@@ -1,0 +1,43 @@
+# 依赖
+node_modules
+npm-debug.log
+
+# 构建产物
+.next
+out
+
+# 测试
+coverage
+.playwright
+test-results
+
+# 开发文件
+*.log
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# 环境文件
+.env
+.env.local
+.env.*.local
+
+# Git
+.git
+.gitignore
+
+# Docker
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# 文档
+README.md
+*.md
+
+# 测试配置
+vitest.config.ts
+playwright.config.ts
+eslint.config.mjs
