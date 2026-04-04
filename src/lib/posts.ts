@@ -25,6 +25,15 @@ export interface PostMeta {
   readingTime: number;
 }
 
+interface PostFrontmatter {
+  title?: string;
+  date?: string;
+  description?: string;
+  tags?: string[];
+  coverImage?: string;
+  content?: string;
+}
+
 export function getSortedPostsData(): PostMeta[] {
   const fileNames = getPostSlugs();
   const allPostsData = fileNames.map((slug) => {
@@ -60,7 +69,10 @@ export function getPostSlugs(): string[] {
     .map((fileName) => fileName.replace(/\.mdx?$/, ""));
 }
 
-export function getPostData(slug: string): { data: { [key: string]: any }; content: string } {
+export function getPostData(slug: string): {
+  data: PostFrontmatter;
+  content: string;
+} {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fullPathMdx = path.join(postsDirectory, `${slug}.mdx`);
   const fullPathToUse = fs.existsSync(fullPath) ? fullPath : fullPathMdx;
@@ -69,7 +81,7 @@ export function getPostData(slug: string): { data: { [key: string]: any }; conte
   const { data, content } = matter(fileContents);
 
   return {
-    data,
+    data: data as PostFrontmatter,
     content,
   };
 }

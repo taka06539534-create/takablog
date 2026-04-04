@@ -15,31 +15,41 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center">
-        <nav className="flex items-center space-x-6 text-sm font-medium">
-          <Link href="/" className="flex items-center space-x-2 font-bold text-lg">
-            <span>TakaBlog</span>
-          </Link>
-          <div className="flex items-center space-x-4 ml-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "transition-colors hover:text-foreground/80",
-                  pathname === item.href
-                    ? "text-foreground font-medium"
-                    : "text-foreground/60"
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-        </nav>
+    <header className="sticky top-0 z-50 w-full px-4 pt-4 md:px-6">
+      <div className="container max-w-screen-2xl">
+        <div className="rounded-full border border-black/10 bg-white/80 px-5 shadow-[0_12px_30px_rgba(30,16,16,0.08)] backdrop-blur supports-[backdrop-filter]:bg-white/65">
+          <nav className="flex h-16 items-center justify-between gap-6">
+            <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+              <span className="font-serif text-2xl italic text-primary">Taka</span>
+              <span className="text-sm uppercase tracking-[0.3em] text-muted-foreground">
+                Blog
+              </span>
+            </Link>
+            <div className="flex items-center gap-5 text-sm font-semibold uppercase tracking-[0.18em]">
+              {navItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={cn(
+                    "relative py-2 transition-colors hover:text-foreground/80",
+                    pathname === item.href
+                      ? "text-foreground"
+                      : "text-foreground/55"
+                  )}
+                >
+                  {item.label}
+                  {pathname === item.href && (
+                    <span className="absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-primary" />
+                  )}
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
       </div>
-      <Separator />
+      <div className="container max-w-screen-2xl px-0">
+        <Separator className="mt-4 opacity-40" />
+      </div>
     </header>
   );
 }
