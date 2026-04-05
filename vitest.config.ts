@@ -13,11 +13,6 @@ export default defineConfig({
       reporter: ['text', 'json', 'html'],
     },
   },
-  esbuild: {
-    loader: 'tsx',
-    include: /.*\.tsx?$/,
-    exclude: [],
-  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

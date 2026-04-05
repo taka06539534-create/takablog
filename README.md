@@ -4,7 +4,10 @@ A modern, responsive personal blog built with Next.js 15, Tailwind CSS, and shad
 
 ## Features
 
-- **Home Page**: Hero section with avatar, name, bio, and social links
+- **Animated Hero**: Dynamic hero section with particle background and typewriter effect
+- **Skill Showcase**: Visual skill display with progress bars and animations
+- **Project Highlights**: Portfolio section with featured projects and tech tags
+- **Timeline Section**: Career journey timeline with milestone events
 - **Blog Listing**: Search and filter functionality by tags
 - **Blog Posts**: Markdown rendering with table of contents
 - **About Page**: Personal information, skills, and contact details
@@ -65,7 +68,7 @@ takablog/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── layout.tsx          # Root layout
-│   │   ├── page.tsx            # Home page
+│   │   ├── page.tsx            # Home page (AnimatedHero, SkillShowcase, ProjectHighlight, TimelineSection)
 │   │   ├── blog/
 │   │   │   ├── page.tsx        # Blog listing
 │   │   │   └── [slug]/
@@ -77,6 +80,10 @@ takablog/
 │   │   ├── layout/             # Header, Footer
 │   │   ├── blog/               # Blog components
 │   │   └── home/               # Home page components
+│   │       ├── animated-hero.tsx      # Animated hero with particle background
+│   │       ├── skill-showcase.tsx     # Skills display with progress bars
+│   │       ├── project-highlight.tsx  # Project portfolio cards
+│   │       └── timeline-section.tsx   # Career timeline
 │   ├── lib/
 │   │   ├── posts.ts            # Blog content loader
 │   │   └── utils.ts            # Utility functions
